@@ -2,7 +2,7 @@
   "name": "git-file-hash",
   "displayName": "Git File Hash",
   "description": "MD5 / SHA-1 / SHA-256 / SHA-384 / SHA-512 / CRC32 of a file at any commit, across its whole history, find the commit by hash, and copy a file's hash to the clipboard",
-  "publisher": "local",
+  "publisher": "beklight",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
