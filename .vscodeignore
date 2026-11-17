@@ -1,0 +1,6 @@
+.git/**
+.gitignore
+.vscode/**
+*.vsix
+build-vsix.ps1
+make-icon.ps1

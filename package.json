@@ -1,0 +1,92 @@
+{
+  "name": "git-file-hash",
+  "displayName": "Git File Hash",
+  "description": "MD5 / SHA-1 / SHA-256 / SHA-384 / SHA-512 / CRC32 of a file at any commit, across its whole history, find the commit by hash, and copy a file's hash to the clipboard",
+  "publisher": "local",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/98Beka/vscode-git-file-hash.git"
+  },
+  "homepage": "https://github.com/98Beka/vscode-git-file-hash#readme",
+  "bugs": {
+    "url": "https://github.com/98Beka/vscode-git-file-hash/issues"
+  },
+  "icon": "icon.png",
+  "galleryBanner": { "color": "#1e2a3a", "theme": "dark" },
+  "keywords": ["md5", "sha256", "sha1", "sha512", "crc32", "hash", "checksum", "git", "commit", "history", "deploy", "verify"],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": ["SCM Providers", "Other"],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitFileHash.copyFileHash",
+        "title": "Copy File Hash",
+        "category": "Git Hash"
+      },
+      {
+        "command": "gitFileHash.copyFileHashAs",
+        "title": "Copy File Hash As…",
+        "category": "Git Hash"
+      },
+      {
+        "command": "gitFileHash.atCommit",
+        "title": "Hash at Commit…",
+        "category": "Git Hash"
+      },
+      {
+        "command": "gitFileHash.history",
+        "title": "Hash History",
+        "category": "Git Hash"
+      },
+      {
+        "command": "gitFileHash.findCommit",
+        "title": "Find Commit by Hash…",
+        "category": "Git Hash"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        { "command": "gitFileHash.copyFileHash", "when": "!explorerResourceIsFolder", "group": "7_gitfilehash@0" },
+        { "command": "gitFileHash.copyFileHashAs", "when": "!explorerResourceIsFolder", "group": "7_gitfilehash@1" },
+        { "command": "gitFileHash.atCommit", "when": "!explorerResourceIsFolder", "group": "7_gitfilehash@2" },
+        { "command": "gitFileHash.history", "when": "!explorerResourceIsFolder", "group": "7_gitfilehash@3" },
+        { "command": "gitFileHash.findCommit", "when": "!explorerResourceIsFolder", "group": "7_gitfilehash@4" }
+      ],
+      "editor/title/context": [
+        { "command": "gitFileHash.copyFileHash", "when": "resourceScheme == file", "group": "7_gitfilehash@0" },
+        { "command": "gitFileHash.copyFileHashAs", "when": "resourceScheme == file", "group": "7_gitfilehash@1" },
+        { "command": "gitFileHash.atCommit", "when": "resourceScheme == file", "group": "7_gitfilehash@2" },
+        { "command": "gitFileHash.history", "when": "resourceScheme == file", "group": "7_gitfilehash@3" },
+        { "command": "gitFileHash.findCommit", "when": "resourceScheme == file", "group": "7_gitfilehash@4" }
+      ]
+    },
+    "configuration": {
+      "title": "Git File Hash",
+      "properties": {
+        "gitFileHash.algorithm": {
+          "type": "string",
+          "default": "md5",
+          "enum": ["md5", "sha1", "sha256", "sha384", "sha512", "crc32"],
+          "enumItemLabels": ["MD5", "SHA-1", "SHA-256", "SHA-384", "SHA-512", "CRC32"],
+          "description": "Default hash algorithm for \"Copy File Hash\" and the hash views. Switching the algorithm in a view updates this setting."
+        },
+        "gitFileHash.gitPath": {
+          "type": "string",
+          "default": "git",
+          "description": "Path to the git executable (if git is not on PATH)."
+        },
+        "gitFileHash.maxCommits": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of the file's most recent commits to scan."
+        }
+      }
+    }
+  }
+}
